@@ -157,7 +157,7 @@ const peopleData = [
     sound: "assets/sound_pieces/Carbon2.mp3",
     name: "Lewis",
     color: paletteLewis,
-    tite: "Carbon",
+    title: "Carbon",
     image: "assets/images/VectorPainting3.png",
   },
 ];
