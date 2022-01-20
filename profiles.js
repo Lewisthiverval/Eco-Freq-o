@@ -97,13 +97,14 @@ const peopleData = [
     title: "Crypto Quarry",
     image: "assets/images/Cally.gif",
   },
-  // {
-  //   sound: "assets/sound_pieces/DIE TODAY SO NATURE CAN LIVE TOMORROW.mp3",
-  //   name: "Rosie",
-  //   color: paletteRosie,
-  //   title: "DIE TODAY SO NATURE CAN LIVE TOMORROW",
-  //   image: "assets/images/rosy image.png",
-  // },
+  {
+    sound:
+      "assets/sound_pieces/DIE TODAY SO NATURE CAN LIVE TOMORROW 10.27.37.mp3",
+    name: "Rosie",
+    color: paletteRosie,
+    title: "DIE TODAY SO NATURE CAN LIVE TOMORROW",
+    image: "assets/images/rosy image.png",
+  },
   {
     sound: "assets/sound_pieces/thetuningofsoils.mp3",
     name: "Joey_00",
