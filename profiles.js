@@ -126,12 +126,11 @@ const peopleData = [
   //   title: "NEED PIECE",
   // },
   {
-    sound:
-      "assets/sound_pieces/THE MUSIC IS NOT OVER [nightlife DRAFT] - Viraj.mp3",
+    sound: "assets/sound_pieces/FINAL VIraj - MUSIC IS OVER [Nightlife].mp3",
     name: "Viraj",
     color: paletteViraj,
-    title: "THE MUSIC IS NOT OVER",
-    image: "assets/images/joey_image.jpg",
+    title: "THE MUSIC OVER",
+    image: "assets/images/Viraj_Image.jpg",
   },
   {
     sound: "assets/sound_pieces/Twin (Draft) [TRANSPORT] - Dan W.mp3",
@@ -158,6 +157,7 @@ const peopleData = [
     sound: "assets/sound_pieces/Carbon2.mp3",
     name: "Lewis",
     color: paletteLewis,
+    titel: "carbon",
     image: "assets/images/VectorPainting3.png",
   },
 ];
