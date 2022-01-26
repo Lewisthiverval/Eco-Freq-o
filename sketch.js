@@ -1,3 +1,5 @@
+// VAriable declarations
+
 let people = [];
 let sounds = [];
 let images = [];
@@ -15,13 +17,13 @@ let button3;
 let button4;
 let button5;
 let slider1;
+let slider3;
 let mixer = [];
 let testSound;
 let carbonText;
 let fft;
 let peakDetect;
 let slider2;
-
 let settings = {
   numberOfagents: 30,
 };
@@ -51,26 +53,33 @@ function setup() {
       x.color
     )
   );
-  textBox1 = createInput("");
-  textBox1.position(40, 200);
-  textBox1.size(80);
-  text("Number of branches - range 1-50", 140, 215);
+
+  function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+  }
+  let xBoxPos = 40;
+  let sliderYstart = 200;
+  text("Number of branches. range 1-50", xBoxPos, sliderYstart + 30);
   slider1 = createSlider(1, 50, 30);
-  slider1.position(40, 230);
-  textBox2 = createInput("");
-  textBox2.position(40, 300);
-  textBox2.size(80);
-  text("Alpha value - range 0 - 170", 140, 315);
+  slider1.position(xBoxPos, sliderYstart);
+  text("Alpha value. range 0 - 170", xBoxPos, sliderYstart + 80);
   slider2 = createSlider(0, 170, 70);
-  slider2.position(40, 330);
+  slider2.position(xBoxPos, sliderYstart + 50);
+  text(
+    "agents to remove on background refresh. range 0 - 50 ",
+    xBoxPos,
+    sliderYstart + 130
+  );
+  slider3 = createSlider(0, 50, 20);
+  slider3.position(xBoxPos, sliderYstart + 100);
   button1 = createButton("refresh background color");
   button2 = createButton("reload whole page");
   button3 = createButton("Show titles");
   button4 = createButton("Stop Sound");
-  button1.position(40, 40);
-  button2.position(40, 90);
-  button3.position(40, 150);
-  button4.position(40, 120);
+  button1.position(xBoxPos, 40);
+  button2.position(xBoxPos, 90);
+  button3.position(xBoxPos, 150);
+  button4.position(xBoxPos, 120);
   // button5.position(40, 200);
   button1.style(
     "color: white; background-color: black; font-family: 'Roboto', sans-serif; width: 100px; border: solid #ffffff 1px;"
@@ -118,7 +127,14 @@ function makeSlidersDisappear() {
 }
 function refreshBackground() {
   let m = map(carbonEmissionForecast, 0, 350, 0, 255);
-  return background(random(backgroundPalette));
+  let newColor = background(random(backgroundPalette));
+  let remove = field.removeAgents(slider3.value());
+  console.log(slider3.value());
+  return {
+    newColor,
+    remove,
+  };
+
   // return background(random(images));
 }
 function refreshPage() {

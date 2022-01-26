@@ -28,11 +28,17 @@ class WaveFieldDesign {
       render(agent);
     }
   }
+
   addAgents(number = 50, x, y, palette) {
     let p = palette;
     for (let i = 0; i < number; i++) {
       this.agents.push(createAgent(new p5.Vector(x, y), p));
     }
+  }
+  removeAgents() {
+    this.agents.splice(0, this.agents.length / 2);
+    console.log("removing");
+    console.log(this.agents.length);
   }
 }
 window.WaveFieldDesign = WaveFieldDesign;
@@ -120,6 +126,7 @@ function render(agent) {
       agent.colorChangeTimer = 50;
     }
   }
+
   let newIndex = agent.indexOfpalette;
 
   rectMode(CENTER);
