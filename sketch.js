@@ -24,6 +24,8 @@ let carbonText;
 let fft;
 let peakDetect;
 let slider2;
+let xBoxPos = 40;
+let sliderYstart = 200;
 let settings = {
   numberOfagents: 30,
 };
@@ -57,19 +59,13 @@ function setup() {
   function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
   }
-  let xBoxPos = 40;
-  let sliderYstart = 200;
-  text("Number of branches. range 1-50", xBoxPos, sliderYstart + 30);
+
   slider1 = createSlider(1, 50, 30);
   slider1.position(xBoxPos, sliderYstart);
-  text("Alpha value. range 20 - 100", xBoxPos, sliderYstart + 80);
+
   slider2 = createSlider(20, 100, 50);
   slider2.position(xBoxPos, sliderYstart + 50);
-  text(
-    "agents to remove on background refresh. range 0 - 50 ",
-    xBoxPos,
-    sliderYstart + 130
-  );
+
   slider3 = createSlider(0, 50, 10);
   slider3.position(xBoxPos, sliderYstart + 100);
 
@@ -108,6 +104,13 @@ function setup() {
   // button5.mousePressed(redraw);
 }
 
+// function instruction() {
+//   let text = text("test", 500, 500);
+//   return {
+//     text,
+//   };
+// }
+
 function stopMusic() {
   people.forEach((p) => {
     p.soundStop();
@@ -134,16 +137,21 @@ function makeSlidersDisappear() {
   });
 }
 function refreshBackground() {
+  text(
+    "Click on icons several times to create more branches, the sound will only play once",
+    100,
+    20
+  );
   let m = map(carbonEmissionForecast, 0, 350, 0, 255);
   let newColor = background(random(backgroundPalette));
   let remove = field.removeAgents(slider3.value());
   console.log(slider3.value());
   changePos();
+  console.log(text);
   return {
     newColor,
     remove,
   };
-
   // return background(random(images));
 }
 
@@ -164,6 +172,23 @@ function draw() {
     p.draw();
   });
 
+  textFont("Helvetica");
+  text(
+    "Click on icons several times to create more branches, the piece willl only play once.",
+    width / 2,
+    50
+  );
+  textSize(12);
+  textFont("Helvetica");
+  text("Number of branches. range 1-50", xBoxPos + 80, sliderYstart + 30);
+  textFont("Helvetica");
+  text("Alpha value. range 20 - 100", xBoxPos + 68, sliderYstart + 80);
+  textFont("Helvetica");
+  text(
+    "agents to remove on background refresh. range 0 - 50 ",
+    xBoxPos + 130,
+    sliderYstart + 130
+  );
   // windowResized();
 }
 
