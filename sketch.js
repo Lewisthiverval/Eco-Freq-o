@@ -241,6 +241,8 @@ function createPerson(
       newPerson.positiony = random(200, height - 50);
     },
     draw: () => {
+      stroke(255, 204, 0);
+      strokeWeight(4);
       image(
         newPerson.icon,
         newPerson.positionx,
