@@ -62,24 +62,28 @@ function setup() {
   text("Number of branches. range 1-50", xBoxPos, sliderYstart + 30);
   slider1 = createSlider(1, 50, 30);
   slider1.position(xBoxPos, sliderYstart);
-  text("Alpha value. range 0 - 170", xBoxPos, sliderYstart + 80);
-  slider2 = createSlider(0, 170, 70);
+  text("Alpha value. range 20 - 100", xBoxPos, sliderYstart + 80);
+  slider2 = createSlider(20, 100, 50);
   slider2.position(xBoxPos, sliderYstart + 50);
   text(
     "agents to remove on background refresh. range 0 - 50 ",
     xBoxPos,
     sliderYstart + 130
   );
-  slider3 = createSlider(0, 50, 20);
+  slider3 = createSlider(0, 50, 10);
   slider3.position(xBoxPos, sliderYstart + 100);
+
   button1 = createButton("refresh background color");
   button2 = createButton("reload whole page");
   button3 = createButton("Show titles");
   button4 = createButton("Stop Sound");
+  button5 = createButton("logo Invasion");
+
   button1.position(xBoxPos, 40);
   button2.position(xBoxPos, 90);
   button3.position(xBoxPos, 150);
   button4.position(xBoxPos, 120);
+  button5.position(xBoxPos, 600);
   // button5.position(40, 200);
   button1.style(
     "color: white; background-color: black; font-family: 'Roboto', sans-serif; width: 100px; border: solid #ffffff 1px;"
@@ -93,10 +97,14 @@ function setup() {
   button3.style(
     "color: white; background-color: black; font-family: 'Roboto', sans-serif; width: 100px; border: solid #ffffff 1px;"
   );
+  button5.style(
+    "color: white; background-color: black; font-family: 'Roboto', sans-serif; width: 100px; border: solid #ffffff 1px;"
+  );
   button1.mousePressed(refreshBackground);
   button2.mousePressed(refreshPage);
   button3.mousePressed(showTitles);
   button4.mousePressed(stopMusic);
+  button5.mousePressed(changePos);
   // button5.mousePressed(redraw);
 }
 
@@ -130,12 +138,19 @@ function refreshBackground() {
   let newColor = background(random(backgroundPalette));
   let remove = field.removeAgents(slider3.value());
   console.log(slider3.value());
+  changePos();
   return {
     newColor,
     remove,
   };
 
   // return background(random(images));
+}
+
+function changePos() {
+  people.forEach((p) => {
+    p.updatePosition();
+  });
 }
 function refreshPage() {
   window.location.reload();
@@ -148,6 +163,8 @@ function draw() {
   people.forEach((p) => {
     p.draw();
   });
+
+  // windowResized();
 }
 
 function createPerson(
@@ -195,8 +212,8 @@ function createPerson(
       }
     },
     updatePosition: () => {
-      newPerson.positionx = newPerson.positionx + random(-1, 1);
-      newPerson.positiony = newPerson.positiony + random(-1, 1);
+      newPerson.positionx = random(200, width - 50);
+      newPerson.positiony = random(200, height - 50);
     },
     draw: () => {
       image(

@@ -35,7 +35,7 @@ class WaveFieldDesign {
       this.agents.push(createAgent(new p5.Vector(x, y), p));
     }
   }
-  removeAgents() {
+  removeAgents(n) {
     this.agents.splice(0, this.agents.length / 2);
     console.log("removing");
     console.log(this.agents.length);
